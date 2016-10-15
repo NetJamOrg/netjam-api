@@ -1,0 +1,23 @@
+* Setup
+** Postgres
+  1. install postgres and libpq-dev (or your OS's equivalent)
+  2. start the service or whatever, again OS dependant
+  3. sudo su to the postgres user
+  4. run createuser nj
+  5. run psql
+  6. run alter user nj with superuser;
+     1. this isn't a super secure thing to do but it will do for now
+     2. alternatively you can run createdb netjam and netjam_api_test and create a new superuser and nj and grant nj permissions on those tables
+     3. i'll make the process better at some point
+** Rails
+  1. install rvm
+  2. install ruby 2.3.0 with rvm
+  3. do gem install bundler rails
+  4. clone the repo
+  5. run bundle install in the directory
+  6. run bin/rails db:setup
+
+
+* Use
+  after setup you can start rails in dev mode with 'bin/rails s'
+  and you can open an interaction console with 'bin/rails c'
