@@ -1,3 +1,6 @@
+# This class facilitates oauth2 authentication. successful oauth callbacks redirect to #create,
+# where the session is created with the information of the associated user in our db (which is created if necessary).
+
 class SessionsController < ApplicationController
   def create
     @user = User.where(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid]).first
@@ -8,7 +11,7 @@ class SessionsController < ApplicationController
       session[:current_user] = @user
       render json: @user
     else
-      respond_with_error 'failed to log you in', 404
+      respond_with_error 'failed to log you in', 404 # idk what error code this should actually be
     end
   end
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :projects, only: [ :index ] # for now
-  resources :users, only: [ :index, :create ]
+  resources :users, only: [ :index ]
   resources :clips, only: [ :index ]
   resources :songs, only: [ :index ]
 end
