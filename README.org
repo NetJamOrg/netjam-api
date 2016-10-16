@@ -11,6 +11,7 @@
      3. i'll make the process better at some point
 ** Mongo
    1. honestly i have no idea. I don't think any special setup is required besides installing and having mongo running.
+   2. tested on mongodb version 3.2.9
 ** Rails
   1. install rvm
   2. install ruby 2.3.0 with rvm
