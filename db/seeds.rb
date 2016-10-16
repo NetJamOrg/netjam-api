@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-u = User.create(name: 'Bob the Dummy', username: 'bob', password_hash: 'wat')
+#u = User.create(name: 'Bob the Dummy', username: 'bob', password_hash: 'wat')

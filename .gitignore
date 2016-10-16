@@ -18,3 +18,6 @@
 
 # default emacs BS
 *~
+
+# google oauth secrets
+secrets.txt
