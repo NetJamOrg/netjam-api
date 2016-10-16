@@ -21,3 +21,5 @@
 * Use
   after setup you can start rails in dev mode with 'bin/rails s'
   and you can open an interaction console with 'bin/rails c'
+** Test
+   run rake spec to run spec tests
