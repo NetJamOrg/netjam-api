@@ -39,6 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    bson (4.1.1)
     builder (3.2.2)
     byebug (9.0.6)
     concurrent-ruby (1.0.2)
@@ -64,6 +65,11 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    mongo (2.3.0)
+      bson (~> 4.1)
+    mongoid (6.0.0)
+      activemodel (~> 5.0)
+      mongo (~> 2.3)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -145,6 +151,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   listen (~> 3.0.5)
+  mongoid (~> 6.0.0)
   omniauth
   omniauth-google-oauth2
   pg (~> 0.18)
