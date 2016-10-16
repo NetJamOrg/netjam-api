@@ -6,5 +6,5 @@ class User < ApplicationRecord
   validates :oauth_uid, presence: true
   # todo reflect this constraint in a migration
   ##    add_index :table_name, [:field1, ... , :fieldn], unique: true
-  validates :provider, uniqueness: {scope: :uid} # provider, uid pair must be unique
+  validates :provider, uniqueness: {scope: :oauth_uid} # provider, uid pair must be unique
 end
