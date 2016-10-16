@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def create
-    byebug
     @user = User.where(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid]).first
     if @user&.id.nil? # create user if not exist
       @user = User.create(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid], name: auth_hash[:info][:name], email: auth_hash[:info][:email], username: auth_hash[:info][:email])

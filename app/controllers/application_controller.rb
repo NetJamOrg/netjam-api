@@ -9,7 +9,6 @@ class ApplicationController < ActionController::API
   end
 
   def ensure_user_authorized
-    byebug
     if !user_authorized?
       redirect_to '/login'
     end
