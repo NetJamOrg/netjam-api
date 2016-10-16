@@ -9,6 +9,9 @@
      1. this isn't a super secure thing to do but it will do for now
      2. alternatively you can run createdb netjam and netjam_api_test and create a new superuser and nj and grant nj permissions on those tables
      3. i'll make the process better at some point
+** Mongo
+   1. honestly i have no idea. I don't think any special setup is required besides installing and having mongo running.
+   2. tested on mongodb version 3.2.9
 ** Rails
   1. install rvm
   2. install ruby 2.3.0 with rvm

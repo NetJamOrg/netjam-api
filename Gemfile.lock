@@ -183,6 +183,7 @@ DEPENDENCIES
   byebug
   factory_girl_rails
   listen (~> 3.0.5)
+  mongoid (~> 6.0.0)
   mongoid-rspec
   omniauth
   omniauth-google-oauth2
