@@ -4,7 +4,7 @@
 class ProjectMetadata
   include Mongoid::Document
 
-  field :name
+  field :name, type: String
   field :project_id, type: Integer
   field :table, type: Hash, default: {}
   field :tracks, type: Array, default: []
@@ -13,6 +13,9 @@ class ProjectMetadata
   # this ensures project_id is unique and present
   validates :project_id, uniqueness: true
   validates :project_id, presence: true
+
+  # ensure name present
+  validates :name, presence: true
 
   def project
     Project.where(id: self.project_id).first
