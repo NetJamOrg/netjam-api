@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if @user&.id.nil? # create user if not exist
       @user = User.create(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid], name: auth_hash[:info][:name], email: auth_hash[:info][:email], username: auth_hash[:info][:email])
     end
-    if @user.persised?
+    if @user&.id != nil
       session[:current_user] = @user
       render json: @user
     else
