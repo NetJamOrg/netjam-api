@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 
   def ensure_user_authorized
     if !user_authorized?
-      respond_with_error 'not authorized, buddy', 401
+      head :unauthorized
     end
   end
 end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:current_user] = @user
       render json: @user
     else
-      respond_with_error 'failed to log you in', 404 # idk what error code this should actually be
+      head :not_found
     end
   end
 
