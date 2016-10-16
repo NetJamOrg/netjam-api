@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   has_one :song
 
-  before_save :init_metadata
+  after_save :init_metadata
 
 
   # todo add more default fields here
@@ -10,6 +10,6 @@ class Project < ApplicationRecord
   end
 
   def project_metadata
-    ProjectMetadata.where(project_id: self.id)
+    ProjectMetadata.where(project_id: self.id).first
   end
 end
