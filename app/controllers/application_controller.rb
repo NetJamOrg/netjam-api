@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  # disable csrf
-  skip_before_action :verify_authenticity_token
 
   def current_user
     session[:current_user]
