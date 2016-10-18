@@ -32,5 +32,13 @@ module NetjamApi
     # in-mem session store. not very scalable, but can write new instance on redis or something
     # using abstractstore
     config.middleware.use(ActionDispatch::Session::MemCacheStore)
+
+    ## Cors
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*' # dev mode. not prod safe.
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
   end
 end

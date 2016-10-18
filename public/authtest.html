@@ -4,14 +4,22 @@
   </head>
     <body>
 
-        <a href="/api/login" target="_blank" > LOGIN </a>
-        <a href="/api/logout"> LOGOUT </a>
+        <a href="http://localhost:3000/api/login" target="_blank" > LOGIN </a>
+        <a href="http://localhost:3000/api/logout"> LOGOUT </a>
         <a href="#" id="proj" onclick="alertProj()"> PROJECTS </a>
 
 
         <script type="text/javascript">
+         // cors
+         $.ajaxSetup({
+             xhrFields: {
+                 withCredentials: true
+             },
+             crossDomain: true
+         });
+
          var alertProj = function() {
-             $.get('/api/projects') .then(res => {
+             $.get('http://localhost:3000/api/projects') .then(res => {
                  alert('got data: ' + res);
              }).fail((xhr, text, code) => {
                  alert('req failed: ' + code);
