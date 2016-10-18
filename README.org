@@ -1,4 +1,7 @@
 * Setup
+** Memcached
+   - you must install memcached for the session store
+   - and start/enabled it in systemd or however your OS does it
 ** Postgres
   1. install postgres and libpq-dev (or your OS's equivalent)
   2. start the service or whatever, again OS dependant

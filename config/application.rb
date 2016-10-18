@@ -26,7 +26,11 @@ module NetjamApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    config.middleware.use(ActionDispatch::Cookies)
-    config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+    # config.middleware.use(ActionDispatch::Cookies)
+    # config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+
+    # in-mem session store. not very scalable, but can write new instance on redis or something
+    # using abstractstore
+    config.middleware.use(ActionDispatch::Session::MemCacheStore)
   end
 end

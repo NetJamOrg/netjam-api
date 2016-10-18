@@ -28,6 +28,9 @@ gem 'omniauth'
 # mongo
 gem 'mongoid', '~> 6.0.0'
 
+# memcache for sessions
+gem 'dalli'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

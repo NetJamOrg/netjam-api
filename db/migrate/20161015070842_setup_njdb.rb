@@ -13,13 +13,13 @@ class SetupNjdb < ActiveRecord::Migration[5.0]
       p.string :name
     end
 
-    
+
     create_table :songs do |s|
       s.integer :project_id
       s.string :name
       s.string :path
     end
-      
+
     add_foreign_key :songs, :projects, column: :project_id
 
 
@@ -27,7 +27,7 @@ class SetupNjdb < ActiveRecord::Migration[5.0]
       c.string :path
       c.integer :user_id
       c.integer :project_id
-      
+
     end
     add_foreign_key :clips, :users, column: :user_id
     add_foreign_key :clips, :projects, column: :project_id
