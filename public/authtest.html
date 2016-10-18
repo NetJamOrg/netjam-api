@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  </head>
+    <body>
+
+        <a href="/api/login" target="_blank" > LOGIN </a>
+        <a href="/api/logout"> LOGOUT </a>
+        <a href="#" id="proj" onclick="alertProj()"> PROJECTS </a>
+
+
+        <script type="text/javascript">
+         var alertProj = function() {
+             $.get('/api/projects') .then(res => {
+                 alert('got data: ' + res);
+             }).fail((xhr, text, code) => {
+                 alert('req failed: ' + code);
+             })
+         }
+        </script>
+    </body>
+</html>
