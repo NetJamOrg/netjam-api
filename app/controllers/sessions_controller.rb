@@ -2,6 +2,7 @@
 # where the session is created with the information of the associated user in our db (which is created if necessary).
 
 class SessionsController < ApplicationController
+
   def create
     @user = User.where(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid]).first
     if @user&.id.nil? # create user if not exist
