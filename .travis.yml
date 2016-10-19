@@ -9,7 +9,7 @@ services:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y postgresql libpq-dev memcached
+  - sudo apt-get install -y libpq-dev memcached
   - psql -c 'create user nj with superuser;' -U postgres
 
 before_script:
