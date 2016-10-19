@@ -185,6 +185,7 @@ DEPENDENCIES
   byebug
   dalli
   factory_girl_rails
+  jwt
   listen (~> 3.0.5)
   mongoid (~> 6.0.0)
   mongoid-rspec

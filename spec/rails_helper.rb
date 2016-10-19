@@ -55,5 +55,25 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # factories
   require 'support/factory_girl'
+
+  # omniauth
+  OmniAuth.config.test_mode = true
+  # provider: auth_hash[:provider], oauth_uid: auth_hash[:uid], name: auth_hash[:info][:name], email: auth_hash[:info][:email], username: auth_hash[:info][:email])
+  OmniAuth.config.mock_auth[:google_oauth2] =
+    OmniAuth::AuthHash.new({
+                             'provider' => 'google_oauth2',
+                             'uid' => '123545',
+                             'info' => {
+                               'name' => 'mockuser',
+                               'image' => 'mock_user_thumbnail_url',
+                               'email' => 'mock@user.com'
+                             },
+                             'credentials' => {
+                               'token' => 'mock_token',
+                               'secret' => 'mock_secret'
+                             }
+                           })
+
 end

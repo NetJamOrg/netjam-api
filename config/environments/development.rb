@@ -44,4 +44,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # set jwt secret from env
+  config.JWT_HMAC_SECRET = ENV['JWT_HMAC_SECRET']
 end

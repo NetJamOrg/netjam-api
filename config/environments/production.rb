@@ -75,4 +75,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # set jwt secret from env
+  config.JWT_HMAC_SECRET = ENV['JWT_HMAC_SECRET']
+
 end
