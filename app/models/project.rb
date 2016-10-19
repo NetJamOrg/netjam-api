@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   has_one :song
 
+  belongs_to :user, foreign_key: :owner_id
+
   after_save :init_metadata
   after_destroy :destroy_metadata
 
@@ -10,10 +12,10 @@ class Project < ApplicationRecord
   end
 
   def destroy_metadata
-    ProjectMetadata.where(project_id: self.id).first.destroy
+    ProjectMetadata.find_by(project_id: self.id).destroy
   end
 
   def project_metadata
-    ProjectMetadata.where(project_id: self.id).first
+    ProjectMetadata.find_by(project_id: self.id)
   end
 end

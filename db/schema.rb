@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016044305) do
+ActiveRecord::Schema.define(version: 20161019004913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20161016044305) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "owner_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -43,5 +44,6 @@ ActiveRecord::Schema.define(version: 20161016044305) do
 
   add_foreign_key "clips", "projects"
   add_foreign_key "clips", "users"
+  add_foreign_key "projects", "users", column: "owner_id"
   add_foreign_key "songs", "projects"
 end
