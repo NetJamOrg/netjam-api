@@ -34,6 +34,7 @@ module NetjamApi
     config.middleware.use(ActionDispatch::Session::MemCacheStore)
 
     ## Cors
+    # TODO (Miles): make this production ready
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*' # dev mode. not prod safe.
