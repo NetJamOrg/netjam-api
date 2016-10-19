@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   before_action :ensure_user_authorized, except: [:create, :auth_hash]
 
   def create
-    byebug
     @user = User.where(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid]).first
     if @user&.id.nil? # create user if not exist
       @user = User.create(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid], name: auth_hash[:info][:name], email: auth_hash[:info][:email], username: auth_hash[:info][:email])
@@ -24,7 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     begin
-      byebug
       Rails.application.config.logout_memcached_client.set(raw_jwt_token_str, true)
       Rails.application.config.logout_memcached_client.touch(raw_jwt_token_str, decoded_token[:payload][:exp])
     rescue JWT::DecodeError
