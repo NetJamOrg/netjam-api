@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 2.3
+
+services:
+  - mongodb
+  - postgresql
+  - memcached
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y postgresql libpq-dev memcached
+  - psql -c 'create user nj with superuser;' -U postgres
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+
+script:
+  - rspec

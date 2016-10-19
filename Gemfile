@@ -31,7 +31,11 @@ gem 'mongoid', '~> 6.0.0'
 # memcache for sessions
 gem 'dalli'
 
+# jwt
 gem 'jwt'
+
+# travis needs this. its an implicit dep anyway
+gem 'rake'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
