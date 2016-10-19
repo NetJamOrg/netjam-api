@@ -10,11 +10,11 @@ services:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libpq-dev
-  - gem install rspec
   - psql -c "create user nj with password 'accessgood'; alter user nj with superuser;" -U postgres
 
 before_script:
   - cp config/database.yml.travis config/database.yml
+  - RAILS_ENV=test rake db:setup
 
 script:
-  - rspec
+  - bundle exec rspec
