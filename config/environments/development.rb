@@ -45,4 +45,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # set jwt secret from env
+  config.JWT_HMAC_SECRET = ENV['JWT_HMAC_SECRET']
 end

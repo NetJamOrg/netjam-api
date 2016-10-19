@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::API
 
-  HMAC_SECRET = ENV['JWT_HMAC_SECRET']
-
   # TODO implement more specific error handling
   # https://github.com/jwt/ruby-jwt/blob/master/lib/jwt/error.rb
 
@@ -14,7 +12,7 @@ class ApplicationController < ActionController::API
   end
 
   def decoded_token
-    decoded_tok = JWT.decode raw_jwt_token_str, HMAC_SECRET, true, { algorithm: 'HS256' }
+    decoded_tok = JWT.decode raw_jwt_token_str, Rails.application.config.JWT_HMAC_SECRET, true, { algorithm: 'HS256' }
     return { payload: decoded_tok[0], header: decoded_tok[1] }.deep_symbolize_keys!
   end
 

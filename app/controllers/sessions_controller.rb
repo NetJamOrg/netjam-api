@@ -3,11 +3,10 @@
 
 class SessionsController < ApplicationController
 
-  HMAC_SECRET = ENV['JWT_HMAC_SECRET']
-
   before_action :ensure_user_authorized, except: [:create, :auth_hash]
 
   def create
+    byebug
     @user = User.where(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid]).first
     if @user&.id.nil? # create user if not exist
       @user = User.create(provider: auth_hash[:provider], oauth_uid: auth_hash[:uid], name: auth_hash[:info][:name], email: auth_hash[:info][:email], username: auth_hash[:info][:email])
@@ -15,7 +14,7 @@ class SessionsController < ApplicationController
     if @user&.id != nil
       # create and return a json web token.
       payload = { user: @user.as_json, exp: (DateTime.now + 5.minutes).to_i }
-      token = JWT.encode payload, HMAC_SECRET, 'HS256'
+      token = JWT.encode payload, Rails.application.config.JWT_HMAC_SECRET, 'HS256'
       render json: token
     else
       head :not_found
