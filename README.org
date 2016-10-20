@@ -1,3 +1,4 @@
+[[https://travis-ci.org/NetJamOrg/netjam-api.svg?branch=master]]
 * Setup
 ** Memcached
    - you must install memcached for the session store
