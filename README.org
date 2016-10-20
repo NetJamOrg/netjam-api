@@ -7,7 +7,7 @@
   1. install postgres and libpq-dev (or your OS's equivalent)
   2. start the service or whatever, again OS dependant
   3. sudo su to the postgres user
-  4. run createuser nj
+  4. run createuser nj with password 'accessgood'; ( this is not prod password )
   5. run psql
   6. run alter user nj with superuser;
      1. this isn't a super secure thing to do but it will do for now
