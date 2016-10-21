@@ -5,12 +5,14 @@
     <body>
 
         <a href="#" onclick="login()"> LOGIN </a>
-        <a href="http://localhost:3000/api/logout"> LOGOUT </a>
+        <a href="#" onclick="logout()"> LOGOUT </a>
         <a href="#" id="proj" onclick="alertProj()"> PROJECTS </a>
 
 
         <script type="text/javascript">
          var token = undefined;
+
+         var logout = () => $.get("http://localhost:3000/api/logout").then(() => alert("logged out"));
          var login = function() {
              var popup = window.open("http://localhost:3000/api/login");
              iid = setInterval(function() {
@@ -22,24 +24,23 @@
                  clearInterval(iid);
              }
              window.addEventListener("message", receiveMessage, false);
-         }
+         };
 
-         // cors
+         // cors and token for all future ajax calls
          $.ajaxSetup({
              xhrFields: {
                  withCredentials: true
              },
-             crossDomain: true
+             crossDomain: true,
+             beforeSend: function (xhr) {
+                 if(token) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); };
+             }
          });
 
          var alertProj = function() {
-             if(!token) { alert('not authed'); return; }
              $.ajax({
                  url: 'http://localhost:3000/api/projects',
                  type: 'GET',
-                 beforeSend: function (xhr) {
-                     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                 }
              })
               .then(res => {
                  alert('got data: ' + res);
