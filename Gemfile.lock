@@ -189,6 +189,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mongoid (~> 6.0.0)
   mongoid-rspec
+  nokogiri
   omniauth
   omniauth-google-oauth2
   pg (~> 0.18)

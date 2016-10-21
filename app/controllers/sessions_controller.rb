@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     <<-HTML
     <html>
         <body>
-            token is #{tok}
+            token is <span id="token">#{tok}</span>
             <script type="text/javascript">
              var receiveMessage = function() {
                  // if (event.origin !== "our_url") { window.close(); return; } // uncomment and fill in for prod readiness (app url)

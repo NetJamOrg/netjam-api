@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'nokogiri'
 
 RSpec.describe "Auth", type: :request do
   before do
@@ -8,6 +8,10 @@ RSpec.describe "Auth", type: :request do
 
   describe "Authorization" do
     let(:resp_body) { JSON.parse(response.body)}
+    let(:tok) {
+      page = Nokogiri::HTML(response.body)
+      page.css('#token')[0].text
+    }
     context 'can get token' do
       it "gets auth" do
         get '/auth/google_oauth2/callback'
@@ -18,7 +22,7 @@ RSpec.describe "Auth", type: :request do
     context 'using token on projects controller' do
       before(:each) {
         get '/auth/google_oauth2/callback'
-        @tok = response.body
+        @tok = tok
       }
       it 'fails with no token' do
         get '/api/projects'
