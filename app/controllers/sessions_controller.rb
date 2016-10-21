@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     end
     if @user&.id != nil
       # create and return a json web token.
-      payload = { user: @user.as_json, exp: (DateTime.now + 5.minutes).to_i }
+      payload = { user: @user.as_json, exp: (DateTime.now + 5.minutes).to_i, iat: Time.now.to_i }
       token = JWT.encode payload, Rails.application.config.JWT_HMAC_SECRET, 'HS256'
       render json: token
     else
