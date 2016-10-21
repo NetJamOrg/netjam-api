@@ -10,13 +10,15 @@
 
 
         <script type="text/javascript">
+         var token = undefined;
          var login = function() {
-             var popup = window.open("/popuptest.html");
+             var popup = window.open("http://localhost:3000/api/login");
              iid = setInterval(function() {
-                 popup.postMessage("ping","http://localhost:8080");
+                 popup.postMessage("ping","http://localhost:3000"); // api url
              },500);
              var receiveMessage = function(e) {
                  alert(e.data);
+                 token = e.data;
                  clearInterval(iid);
              }
              window.addEventListener("message", receiveMessage, false);
@@ -31,7 +33,15 @@
          });
 
          var alertProj = function() {
-             $.get('http://localhost:3000/api/projects') .then(res => {
+             if(!token) { alert('not authed'); return; }
+             $.ajax({
+                 url: 'http://localhost:3000/api/projects',
+                 type: 'GET',
+                 beforeSend: function (xhr) {
+                     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                 }
+             })
+              .then(res => {
                  alert('got data: ' + res);
              }).fail((xhr, text, code) => {
                  alert('req failed: ' + code);

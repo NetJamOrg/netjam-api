@@ -14,12 +14,12 @@ class SessionsController < ApplicationController
       # create and return a json web token.
       payload = { user: @user.as_json, exp: (DateTime.now + 5.minutes).to_i, iat: Time.now.to_i }
       token = JWT.encode payload, Rails.application.config.JWT_HMAC_SECRET, 'HS256'
-      render json: token
+      # render html page with postmessage logic to tell main page about this token
+      render html: token_return_tmpl(token).html_safe
     else
       head :not_found
     end
   end
-
 
   def destroy
     begin
@@ -32,5 +32,23 @@ class SessionsController < ApplicationController
 
   protected def auth_hash
     request.env['omniauth.auth']
+  end
+
+  private def token_return_tmpl(tok)
+    <<-HTML
+    <html>
+        <body>
+            token is #{tok}
+            <script type="text/javascript">
+             var receiveMessage = function() {
+                 // if (event.origin !== "our_url") { window.close(); return; } // uncomment and fill in for prod readiness (app url)
+                 event.source.postMessage('#{tok}', event.origin);
+                 window.close();
+             }
+             window.addEventListener("message", receiveMessage, false);
+            </script>
+        </body>
+    </html>
+    HTML
   end
 end
