@@ -10,9 +10,10 @@
 
 
         <script type="text/javascript">
-         var token = undefined;
-
-         var logout = () => $.get("http://localhost:3000/api/logout").then(() => alert("logged out"));
+         var logout = () => $.get("http://localhost:3000/api/logout").then(() => {
+             alert("logged out");
+             localStorage.removeItem('netjam_token');
+         });
          var login = function() {
              var popup = window.open("http://localhost:3000/api/login");
              iid = setInterval(function() {
@@ -22,6 +23,7 @@
                  alert(e.data);
                  token = e.data;
                  clearInterval(iid);
+                 localStorage.setItem('netjam_token', token);
              }
              window.addEventListener("message", receiveMessage, false);
          };
@@ -33,6 +35,7 @@
              },
              crossDomain: true,
              beforeSend: function (xhr) {
+                 let token = localStorage.getItem('netjam_token');
                  if(token) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); };
              }
          });
